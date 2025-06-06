@@ -1,0 +1,197 @@
+Librerías que estás usando
+1. Express.js
+¿Qué es?
+Express es un framework para Node.js que simplifica la creación de servidores web y APIs. Te proporciona un conjunto de herramientas y funcionalidades listas para usar que hacen mucho más fácil gestionar rutas, manejar peticiones HTTP, y más.
+
+¿Por qué lo usas?
+Express facilita la creación de un servidor y la gestión de rutas de una manera muy eficiente. Sin Express, tendrías que escribir mucho más código para hacer lo mismo.
+
+Métodos comunes:
+
+express.Router(): Crea un router que maneja rutas específicas (como /ficha/crear). Te permite dividir tu código de manera modular.
+
+app.get() y app.post(): Definen las rutas y los métodos HTTP que quieres manejar. Usas get para obtener información y post para crear datos (por ejemplo, insertar registros en una base de datos).
+
+app.use(): Registra middleware para que se ejecute en cada solicitud. Por ejemplo, usar app.use(express.json()) permite que Express procese JSON automáticamente.
+
+¿Por qué se usa Express?
+Express hace todo más sencillo, desde manejar errores hasta manejar los datos que llegan en el cuerpo de la solicitud (req.body).
+
+2. mysql2/promise (módulo de MySQL para Node.js)
+¿Qué es?
+mysql2/promise es una librería que facilita la conexión y ejecución de consultas SQL en una base de datos MySQL o MariaDB usando promesas (Promises).
+
+¿Por qué lo usas?
+Usamos esta librería porque queremos interactuar con la base de datos de manera asíncrona. Es decir, cuando ejecutas una consulta, no quieres que el servidor se quede bloqueado esperando la respuesta. El uso de promesas permite que el código continúe ejecutándose mientras espera la respuesta de la base de datos.
+
+Métodos comunes:
+
+mysql.createConnection(): Crea una conexión a la base de datos con las credenciales que defines.
+
+dbconn.query(): Ejecuta una consulta SQL (como SELECT o INSERT). Devuelve una promesa, lo que significa que el resultado se obtiene cuando la promesa se resuelve.
+
+await: Se usa para esperar que una promesa se resuelva. En tu código, lo usas junto con dbconn.query() para que la ejecución espere la respuesta de la base de datos.
+
+Conceptos Clave en Tu Código
+1. Rutas (Endpoints)
+Cada vez que alguien hace una solicitud HTTP (por ejemplo, abrir una página web o enviar un formulario), Express debe saber cómo responder a esa solicitud. Eso lo haces usando rutas.
+
+¿Qué son las rutas?
+Son definiciones de qué hacer cuando alguien hace una solicitud en una URL específica. Usamos métodos como app.get(), app.post(), app.put(), y app.delete() para definir cómo responder a diferentes tipos de solicitudes HTTP.
+
+Por ejemplo:
+
+GET /ficha/listartodos: Recibir una solicitud GET para listar todos los registros.
+
+POST /ficha/crear: Recibir una solicitud POST para crear un nuevo registro.
+
+2. Petición y Respuesta HTTP
+Cada vez que alguien hace una solicitud a tu servidor (por ejemplo, un cliente web o Postman), tienes dos cosas:
+
+req (request): Información sobre la solicitud (por ejemplo, qué datos envió el cliente).
+
+res (response): Lo que el servidor enviará de vuelta al cliente.
+
+Métodos de req comunes:
+
+req.body: Contiene los datos enviados en una solicitud POST (por ejemplo, los datos de un formulario).
+
+req.params: Contiene los parámetros de la URL (como :id en /ficha/buscarPorId/:id).
+
+req.query: Contiene los parámetros de consulta (como en ?nombre=Juan en la URL).
+
+Métodos de res comunes:
+
+res.send(): Envía una respuesta al cliente.
+
+res.status(): Establece el código de estado HTTP de la respuesta (por ejemplo, 200 para éxito, 500 para error).
+
+3. Promesas y async/await
+¿Qué son las Promesas?
+Las promesas en JavaScript son una forma de manejar operaciones asíncronas (como leer archivos o hacer consultas a bases de datos) de manera más ordenada. Una promesa representa el resultado de una operación que puede completarse en el futuro.
+
+async/await es la forma moderna de trabajar con promesas:
+
+async convierte una función en una función asíncrona.
+
+await se usa dentro de funciones async para esperar que una promesa se resuelva antes de continuar con la ejecución.
+
+4. Base de Datos
+En tu código, usas MySQL para almacenar la información. Las consultas SQL son simples peticiones que envías a la base de datos para obtener, insertar, actualizar o eliminar datos.
+
+SELECT * FROM ficha;: Esta consulta obtiene todos los registros de la tabla ficha.
+
+INSERT INTO ficha SET ?;: Inserta un nuevo registro en la tabla ficha. Los valores a insertar se pasan como un objeto (como el datosFormulario).
+
+Resumen Final
+Node.js permite ejecutar JavaScript en el servidor.
+
+Express es una librería para crear servidores web y manejar rutas de manera sencilla.
+
+mysql2/promise te ayuda a conectar y consultar bases de datos de manera asíncrona.
+
+Las rutas definen cómo responder a las solicitudes HTTP, y req y res son los objetos que gestionan la información que llega y la respuesta que se envía.
+
+Promesas permiten manejar operaciones asíncronas, y async/await hace que ese código sea más fácil de leer.
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+librerías 
+1. cors (^2.8.5)
+¿Qué es y para qué sirve?
+CORS (Cross-Origin Resource Sharing) es un mecanismo que permite que aplicaciones web (por ejemplo, un frontend en React o Vue) realicen solicitudes a tu API, aunque la API esté en un dominio diferente (dominio cruzado).
+
+Sin CORS, los navegadores bloquearían esas solicitudes por razones de seguridad.
+
+¿Por qué lo necesitas?
+Si tu frontend y tu backend están en diferentes dominios o puertos (por ejemplo, tu API está en http://localhost:3000 y tu frontend en http://localhost:4000), necesitarás habilitar CORS para que el navegador permita la comunicación entre ellos.
+
+¿Cómo lo usas?
+Se agrega a tu aplicación Express de la siguiente manera:
+
+js
+Copiar
+Editar
+import cors from 'cors';
+app.use(cors()); // Habilita CORS para todas las rutas
+Si solo quieres permitir ciertos orígenes (por ejemplo, tu frontend), puedes configurarlo más específicamente:
+
+js
+Copiar
+Editar
+app.use(cors({
+  origin: 'http://localhost:4000', // Solo permite solicitudes desde este origen
+}));
+2. dotenv (^16.5.0)
+¿Qué es y para qué sirve?
+dotenv es una librería que te permite cargar variables de entorno desde un archivo .env a tu aplicación. Las variables de entorno son valores que quieres que tu aplicación lea, pero no quieres que estén directamente en el código.
+
+Esto es muy útil para manejar información sensible, como credenciales de base de datos, claves de API, puertos de servidor, etc.
+
+¿Por qué lo necesitas?
+En lugar de tener tus credenciales y configuraciones directamente en el código (lo cual no es seguro ni recomendable), puedes guardar esos valores en un archivo .env, y dotenv los cargará automáticamente para que tu código no los tenga explícitamente.
+
+¿Cómo lo usas?
+Crea un archivo .env en tu raíz del proyecto, por ejemplo:
+
+ini
+Copiar
+Editar
+HOST=localhost
+DB_USER=root
+DB_PWD=mi_password_secreto
+DB_DATABASE=mibasededatos
+DB_PORT=3306
+APP_PORT=3000
+Luego, en tu index.js o donde sea necesario, importas dotenv y lo cargas:
+
+js
+Copiar
+Editar
+import 'dotenv/config'; // Esto carga las variables de tu .env
+Y ahora puedes acceder a esas variables de entorno de esta manera:
+
+js
+Copiar
+Editar
+const dbHost = process.env.HOST;
+const dbUser = process.env.DB_USER;
+3. express (^5.1.0)
+¿Qué es y para qué sirve?
+Ya lo discutimos antes, pero Express es un framework minimalista para construir aplicaciones web en Node.js. Hace que sea mucho más sencillo manejar rutas, solicitudes HTTP, y middleware, y te proporciona herramientas poderosas para manejar una API o un servidor web.
+
+4. mysql2 (^3.14.1)
+¿Qué es y para qué sirve?
+Ya lo tocamos también, pero para resumir: mysql2 es una librería que te permite interactuar con bases de datos MySQL o MariaDB desde tu aplicación Node.js. La ventaja de mysql2/promise es que soporta promesas, lo que te permite usar async/await y manejar las operaciones asíncronas de manera más limpia.
+
+¿Por qué lo necesitas?
+Necesitas esta librería para hacer consultas a la base de datos, como insertar, actualizar o seleccionar datos en tus tablas.
+
+5. nodemon (^3.1.10)
+¿Qué es y para qué sirve?
+Nodemon es una herramienta de desarrollo que monitorea tus archivos de código fuente y automáticamente reinicia el servidor cuando detecta cambios en esos archivos. Esto es super útil porque no tienes que estar reiniciando manualmente el servidor cada vez que haces un cambio en el código.
+
+¿Por qué lo necesitas?
+Sin Nodemon, tendrías que detener y volver a iniciar tu servidor cada vez que cambias algo. Con Nodemon, simplemente salvas el archivo y el servidor se reinicia automáticamente para reflejar los cambios.
+
+¿Cómo lo usas?
+Para usarlo, en lugar de iniciar el servidor con node app.js, lo haces con nodemon:
+
+bash
+Copiar
+Editar
+nodemon index.js
+Esto hará que el servidor se reinicie automáticamente siempre que detecte cambios en el código.
+
+Resumen de las librerías
+cors: Habilita la comunicación entre diferentes orígenes (como tu frontend y backend).
+
+dotenv: Carga variables de entorno desde un archivo .env para mantener tu configuración y credenciales fuera del código.
+
+express: Framework para crear servidores web y APIs de manera rápida y fácil.
+
+mysql2: Te permite interactuar con bases de datos MySQL/MariaDB desde tu código Node.js.
+
+nodemon: Herramienta para desarrollo que reinicia tu servidor automáticamente cuando modificas los archivos del proyecto.
