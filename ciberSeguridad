@@ -1,0 +1,42 @@
+🧱 FASE 1: Fundamentos de Redes
+Nivel	Tema Principal	Subtema / Escalón	Herramientas / Recursos Sugeridos
+🟢 Básico	Modelo OSI	7 Capas: Física, Enlace, Red, Transporte, Sesión, Presentación, Aplicación	Cisco NetAcad, YouTube, CompTIA Network+
+Protocolos por capa: HTTP, TCP, UDP, IP, ARP, DNS...	Wireshark para observar tráfico
+🟢 Básico	IP y Subnetting	IP pública/privada, máscara de red, subredes	Subnetting.net, Packet Tracer
+🟢 Básico	Routing & Switching	Qué es routing, tipos, switching vs routing	Cisco Packet Tracer, simuladores
+🟡 Medio	Protocolos de red	DHCP, DNS, FTP, SSH, SMTP, SNMP, Telnet	Analiza tráfico real con Wireshark
+🟡 Medio	Herramientas de red	Ping, Traceroute, nslookup, netstat, Wireshark	CMD, Terminal, Wireshark
+🟡 Medio	Seguridad de red básica	NAT, Firewalls, VPN, VLAN, ACLs	Packet Tracer, TryHackMe Labs
+
+🔐 FASE 2: Fundamentos de Ciberseguridad
+Nivel	Tema Principal	Subtema / Escalón	Herramientas / Recursos Sugeridos
+🟢 Básico	Conceptos base	Confidencialidad, Integridad, Disponibilidad (CIA Triad)	Curso IBM Cybersecurity, Platzi
+🟢 Básico	Autenticación y autorización	Passwords, 2FA, permisos, RBAC	OWASP Docs, YouTube
+🟢 Básico	Criptografía básica	Hashing (MD5, SHA), Cifrado simétrico/asimétrico (AES, RSA)	CyberSecLabs, TryHackMe
+🟡 Medio	Tipos de amenazas	Malware, phishing, ingeniería social, exploits comunes	OWASP Top 10
+🟡 Medio	Seguridad en sistemas	Linux hardening, permisos, logs, firewalls	Ubuntu/Kali VM, Linux Journey
+🟡 Medio	Seguridad en apps web	Inyección SQL, XSS, CSRF, autenticación rota	PortSwigger Web Security Academy
+
+🕵️‍♂️ FASE 3: Red Team / Ethical Hacking
+Nivel	Tema Principal	Subtema / Escalón	Herramientas / Recursos Sugeridos
+🟢 Básico	Reconocimiento	Footprinting, WHOIS, DNS enum, Google Hacking	Recon-ng, theHarvester, nslookup
+🟢 Básico	Escaneo	Nmap, Masscan, identificación de puertos y servicios	Nmap + TryHackMe Labs
+🟢 Básico	Vulnerabilidades	Exploits, CVEs, análisis de servicios	Searchsploit, CVE Details
+🟡 Medio	Explotación	Buffer Overflow, Web Exploits, RCE, LFI, SQLi	Metasploit, Burp Suite, manual
+🟡 Medio	Post-Explotación	Meterpreter, manteniendo acceso, pivoting	Metasploit, Empire
+🔴 Avanzado	Escalada de privilegios	Local Exploits, misconfiguraciones	LinPEAS, WinPEAS, GTFOBins
+🔴 Avanzado	Ingeniería social	Técnicas de phishing, USB drop, pretexting	Social Engineering Toolkit (SET)
+
+🧪 FASE 4: Laboratorios, Práctica y Simulación
+Actividad	Herramientas recomendadas	Detalles clave
+Crear entorno local	VirtualBox, VMware, Vagrant, Kali, Ubuntu	Simula redes, hackea entornos controlados
+Plataformas prácticas	TryHackMe, Hack The Box, PortSwigger, CTFs	Aprende haciendo, desde básico a realismo
+Automatización	Python, Bash	Scripts para escaneo, ataque, recolección de datos
+Proyectos personales	Crea tu portafolio: write-ups, labs, github	Documenta tus hacks legales
+
+🧾 FASE 5: Certificaciones y Desarrollo Profesional
+Certificación	Nivel	Enfoque	Valor recomendado
+CompTIA Security+	Básico	Seguridad general	Ideal para validar conocimientos base
+eJPT (INE)	Básico	Hacking ético / ofensivo	Gran primer paso para Red Team
+CEH	Medio	Ethical Hacking	Reconocida en empresas
+OSCP	Avanzado	Pentesting realista	Muy respetada, práctica intensiva
